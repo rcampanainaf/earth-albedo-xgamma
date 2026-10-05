@@ -1,0 +1,283 @@
+{
+  "release": "earth-albedo-xgamma v1.0",
+  "created_utc": "2026-10-03T16:44:50.170436+00:00",
+  "python_git_commit": "10fa9f756e5a",
+  "files": {
+    "CITATION.cff": {
+      "bytes": 836,
+      "sha256": "744c37fffd817a910a715b1b2ebf7ba02608d811f0bcb3fee5a734d05ff5ab66"
+    },
+    "LICENSE": {
+      "bytes": 18657,
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+    },
+    "README.md": {
+      "bytes": 11175,
+      "sha256": "fa9b28ff67d11d230895f6962bf4de1191f9e5bc3f79c097c771aff9b1413830"
+    },
+    "albedo_earth.py": {
+      "bytes": 15120,
+      "sha256": "b9e879b806f7d45eb88e88c888a684b4235a1cf8f4f6baa90a96d976cb974fa6"
+    },
+    "data/albedo_cr_emission.h5": {
+      "bytes": 45345637,
+      "sha256": "196991da6ad0339c691c707bd19cb80e83e6099f5228a37300f2da23b0b77890",
+      "source": "output/p5/cr_albedo.h5",
+      "provenance": {
+        "chunks": {
+          "ftfp": {
+            "p": 72,
+            "he": 36,
+            "e-": 12,
+            "e+": 12
+          },
+          "qgsp": {
+            "p": 72,
+            "he": 36,
+            "e-": 12,
+            "e+": 12
+          },
+          "inclxx": {
+            "p": 72,
+            "he": 36,
+            "e-": 12,
+            "e+": 12
+          }
+        },
+        "settings": {
+          "HE_FRACTION": 0.05,
+          "HEAVY": {
+            "CNO": [
+              0.068,
+              14
+            ],
+            "Ne-S": [
+              0.026,
+              24
+            ],
+            "Fe": [
+              0.0054,
+              56
+            ]
+          },
+          "HEAVY_FACTOR": 0.4696,
+          "POSITRON_FRACTION": null,
+          "BAND_keV": [
+            25.0,
+            300.0
+          ],
+          "spectra": "modern",
+          "spectra_doc": "force field on LIS: Vos & Potgieter 2015 p; Bisschoff et al. 2019 He, e-, e+ (phi on the Usoskin et al. 2017 / Vaisanen et al. 2023 scale)",
+          "cutoff": "sharp vertical rigidity cutoff, all directions"
+        },
+        "models": [
+          "ftfp",
+          "qgsp",
+          "inclxx"
+        ],
+        "components": [
+          "p",
+          "he",
+          "heavy",
+          "e-",
+          "e+",
+          "re"
+        ]
+      }
+    },
+    "data/albedo_cr_emission_s07.h5": {
+      "bytes": 45389679,
+      "sha256": "3dafe451986a629bd31a26a03c4c3916281c8a3a24e42053a778b169defe883c",
+      "source": "output/p5/cr_albedo_s07.h5",
+      "provenance": {
+        "chunks": {
+          "ftfp": {
+            "p": 72,
+            "he": 36,
+            "e-": 12,
+            "e+": 12
+          },
+          "qgsp": {
+            "p": 72,
+            "he": 36,
+            "e-": 12,
+            "e+": 12
+          },
+          "inclxx": {
+            "p": 72,
+            "he": 36,
+            "e-": 12,
+            "e+": 12
+          }
+        },
+        "settings": {
+          "HE_FRACTION": 0.05,
+          "HEAVY": {
+            "CNO": [
+              0.068,
+              14
+            ],
+            "Ne-S": [
+              0.026,
+              24
+            ],
+            "Fe": [
+              0.0054,
+              56
+            ]
+          },
+          "HEAVY_FACTOR": 0.4696,
+          "POSITRON_FRACTION": 0.1,
+          "BAND_keV": [
+            25.0,
+            300.0
+          ],
+          "spectra": "s07",
+          "spectra_doc": "S07 eq. 5 (Usoskin 2005, Burger 2000 LIS) p/He, eq. 6 (Webber 1983) e+- (older phi scale)",
+          "cutoff": "sharp vertical rigidity cutoff, all directions"
+        },
+        "models": [
+          "ftfp",
+          "qgsp",
+          "inclxx"
+        ],
+        "components": [
+          "p",
+          "he",
+          "heavy",
+          "e-",
+          "e+",
+          "re"
+        ]
+      }
+    },
+    "data/albedo_cxb_reflection.h5": {
+      "bytes": 1076805,
+      "sha256": "e24d8ceb0c6269f49e3941fb03900152086f6a93902a912e1d052b1086451daa",
+      "source": "output/p4/cxb_albedo.h5",
+      "provenance": {
+        "chunks": "41 chunk files",
+        "n_primaries": 302010000
+      }
+    },
+    "data/albedo_reference_orbits.h5": {
+      "bytes": 1659024,
+      "sha256": "06ffcf7c3bec6e6c0b9a65079b0e17f49b333fd8e9a70594be592bc7ec3e9e99",
+      "source": "output/p6/reference_orbits.h5"
+    },
+    "data/cutoff_igrf_1972.5.h5": {
+      "bytes": 403648,
+      "sha256": "c2dab5500053d692731023c7b04b7e4b388a6b7fc4af38897963d9be1f873f63",
+      "source": "output/p5/cutoff_igrf_1972.5.h5"
+    },
+    "data/cutoff_igrf_1980.h5": {
+      "bytes": 403648,
+      "sha256": "c78365e1df9142e66de1233916d1492733e07009e3f4717751e7b5a39b55c833",
+      "source": "output/p5/cutoff_igrf_1980.h5"
+    },
+    "data/cutoff_igrf_1985.h5": {
+      "bytes": 403648,
+      "sha256": "cbc4c9c14d9671df522556ea9f8ae0303e237271dfb80727b961e92885653781",
+      "source": "output/p5/cutoff_igrf_1985.h5"
+    },
+    "data/cutoff_igrf_1999.5.h5": {
+      "bytes": 403648,
+      "sha256": "b6b531a69b0c2d4db627eed724a8d0588224113cc3e796ada8a80f857fc0ac6d",
+      "source": "output/p5/cutoff_igrf_1999.5.h5"
+    },
+    "data/cutoff_igrf_2005.5.h5": {
+      "bytes": 403648,
+      "sha256": "24bbe92f4b794a4b1f356030a3cfdaac39733fe67e9982ffa21cb7fe02a21158",
+      "source": "output/p5/cutoff_igrf_2005.5.h5"
+    },
+    "data/cutoff_igrf_2006.1.h5": {
+      "bytes": 403648,
+      "sha256": "c23d6dbed1d9a4edeb27403d8e31d3f1d2d6f137773aae8e6607a803875fcbbc",
+      "source": "output/p5/cutoff_igrf_2006.1.h5"
+    },
+    "data/cutoff_igrf_2008.6.h5": {
+      "bytes": 403648,
+      "sha256": "6f9bbbe0a113c29c9198f3a0b39537ab46303e5a2242ea78dbe7d4b8cb49e058",
+      "source": "output/p5/cutoff_igrf_2008.6.h5"
+    },
+    "data/cutoff_igrf_2013.5.h5": {
+      "bytes": 403648,
+      "sha256": "c8ad269af9d38d93ee23ba6b084eea3c3a8c640de1ae012fd0dc30cc088b8244",
+      "source": "output/p5/cutoff_igrf_2013.5.h5"
+    },
+    "data/cutoff_igrf_2025.h5": {
+      "bytes": 403648,
+      "sha256": "21c5da0c29d2deb2f21d9b6e43de620c4bff8a13d21659e03b3a97b7617a8272",
+      "source": "output/p5/cutoff_igrf_2025.h5"
+    },
+    "data/reference_orbits/LEO-EQ_solar_max.txt": {
+      "bytes": 6184,
+      "sha256": "b0ca8a122bda76ad36c3f5b47bb7d52b654d59ad3ca8f130db50e7746c7e07f8",
+      "source": "output/p6/LEO-EQ_solar_max.txt"
+    },
+    "data/reference_orbits/LEO-EQ_solar_min.txt": {
+      "bytes": 6184,
+      "sha256": "5e623cf8ed656491a1ec464cddbf72009ee6f780f824efa6cfda58218fbdb5d8",
+      "source": "output/p6/LEO-EQ_solar_min.txt"
+    },
+    "data/reference_orbits/LEO-SSO_solar_max.txt": {
+      "bytes": 6188,
+      "sha256": "f61c3f6881c55fd7cddc6b0209ae303108a6fc341fc2991855712ee4d6643c3b",
+      "source": "output/p6/LEO-SSO_solar_max.txt"
+    },
+    "data/reference_orbits/LEO-SSO_solar_min.txt": {
+      "bytes": 6188,
+      "sha256": "25f3bb4d81a339a5cee9d2f16f8b12e6ef42c18be99108840a62ed260c923063",
+      "source": "output/p6/LEO-SSO_solar_min.txt"
+    },
+    "data/responses/response_alpha.h5": {
+      "bytes": 2240606,
+      "sha256": "5d57325cab4f73829237d49f34a7d0bc64a1de2edffabae0a3a3a24105c8b5b5",
+      "source": "output/p5/prod/alpha_cr/*/*.h5"
+    },
+    "data/responses/response_cxb.h5": {
+      "bytes": 2124021,
+      "sha256": "7615804c7038834b23ab7248ab65693a16f70e2c7bc05ace704089be43a91e7c",
+      "source": "output/p4/prod/*/chunk_*.h5"
+    },
+    "data/responses/response_e+.h5": {
+      "bytes": 798113,
+      "sha256": "02077bf1ba053efeed6f54ea661089dbfaffd4c5bcd75fcbe9c222bb86ceb446",
+      "source": "output/p5/prod/e+_cr/*/*.h5"
+    },
+    "data/responses/response_e-.h5": {
+      "bytes": 839842,
+      "sha256": "8053f521f01854ba466200225ca5ed33eef2c11c854dc5e34be913b8f6931f3a",
+      "source": "output/p5/prod/e-_cr/*/*.h5"
+    },
+    "data/responses/response_proton.h5": {
+      "bytes": 2903315,
+      "sha256": "0feaf5ac153b47eadb6f15206663a172f9feca885d3f2e63bf8441e283aaa749",
+      "source": "output/p5/prod/proton_cr/*/*.h5"
+    },
+    "docs/format.md": {
+      "bytes": 29565,
+      "sha256": "adb45ebcd81b9561e7cad4a04cead907857ba978aefd1843b93e7d389c59bebf"
+    },
+    "docs/worked_example.md": {
+      "bytes": 8748,
+      "sha256": "3a508d04335367bd0818015e0530b1ebbe9c200fbb922ffa7b3f9389672061e0"
+    },
+    "examples/fold_responses.py": {
+      "bytes": 6279,
+      "sha256": "9ca53e07e489a326849a43a044fa9e7d0398889041d1b6c4a24ad93f22ad898c"
+    },
+    "examples/minimal_example.py": {
+      "bytes": 1371,
+      "sha256": "8980f0a25609ccdea5f81ed95179ee5f3c66ea0ec37f3411e4c8ab7275a53ddb"
+    },
+    "examples/rome_solar_minimum.py": {
+      "bytes": 7424,
+      "sha256": "65a192cde386e073e0e14aadf76e96c634720eeed3097c6d21d928fd83323fd4"
+    },
+    "requirements.txt": {
+      "bytes": 97,
+      "sha256": "ba575d9ca17e53cb90774432639897f0e9958d91a19d660348aa74e38d7295e5"
+    }
+  }
+}

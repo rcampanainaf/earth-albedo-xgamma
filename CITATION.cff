@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use these data, please cite the accompanying paper (reference to be added) and this release."
+title: "earth-albedo-xgamma: the X- and gamma-ray emission of the Earth, 1 keV-10 MeV"
+version: "1.0"
+license: CC-BY-4.0
+type: dataset
+authors:
+  - family-names: Campana
+    given-names: Riccardo
+    affiliation: "INAF/OAS Bologna"
+abstract: >-
+  Emergent intensity of the Earth's atmosphere from 1 keV to 10 MeV, from Geant4 simulations: reflection of the
+  cosmic X-ray background and emission induced by galactic cosmic rays, tabulated against photon energy and impact
+  parameter, with the response functions of the standard production, IGRF cutoff grids and reference orbits.
+keywords:
+  - Earth albedo
+  - cosmic X-ray background
+  - cosmic rays
+  - gamma rays
+  - instrumental background
+  - Geant4

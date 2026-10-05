@@ -1,0 +1,4 @@
+numpy>=1.22
+h5py>=3.0
+# optional, for the plot of examples/rome_solar_minimum.py
+matplotlib>=3.5
