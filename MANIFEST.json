@@ -1,19 +1,19 @@
 {
-  "release": "earth-albedo-xgamma v1.0",
-  "created_utc": "2026-10-03T16:44:50.170436+00:00",
-  "python_git_commit": "10fa9f756e5a",
+  "release": "earth-albedo-xgamma v1.0.1",
+  "created_utc": "2026-10-05T09:59:23.999516+00:00",
+  "python_git_commit": "1acc7201c7cd",
   "files": {
     "CITATION.cff": {
-      "bytes": 836,
-      "sha256": "744c37fffd817a910a715b1b2ebf7ba02608d811f0bcb3fee5a734d05ff5ab66"
+      "bytes": 1126,
+      "sha256": "2c87d8f36b9588be803d3166ef1d9bb93fe99d568462a342fc4ec22bfbc5f8e7"
     },
     "LICENSE": {
       "bytes": 18657,
       "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
     },
     "README.md": {
-      "bytes": 11175,
-      "sha256": "fa9b28ff67d11d230895f6962bf4de1191f9e5bc3f79c097c771aff9b1413830"
+      "bytes": 11459,
+      "sha256": "e9d56feef6ea820e9e1286691eba99e9f835fd43da1d8ede4d7b6523a84e1c95"
     },
     "albedo_earth.py": {
       "bytes": 15120,

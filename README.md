@@ -1,5 +1,7 @@
 # earth-albedo-xgamma: the X- and γ-ray emission of the Earth, 1 keV–10 MeV
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23158832.svg)](https://doi.org/10.5281/zenodo.23158832)
+
 Tables of the photon emission of the Earth's atmosphere seen from space, from a Geant4 Monte Carlo simulation
 (albedo_sim): the **reflection of the cosmic X-ray background (CXB)** and the **emission induced by galactic cosmic
 rays (CR)**, from 1 keV to 10 MeV (photons are recorded up to 10 GeV). The tables give the emergent intensity
@@ -150,4 +152,6 @@ The content of this release (data, documentation and code) is licensed under the
 International licence (CC BY 4.0, see `LICENSE`): you may share and adapt it for any purpose, provided that you give
 appropriate credit. If you use these data, please cite the accompanying paper and this release (`CITATION.cff`).
 
-*Paper reference and DOI of the archived release: to be added.*
+The release is archived on Zenodo: [doi:10.5281/zenodo.23158832](https://doi.org/10.5281/zenodo.23158832)
+(all versions; version 1.0 is [doi:10.5281/zenodo.23158833](https://doi.org/10.5281/zenodo.23158833)).
+Paper reference: to be added.
