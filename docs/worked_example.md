@@ -149,12 +149,15 @@ Repeat Steps 3–6 with the variants in the tables (`ae.Emission(model=...)`, `l
 |---|---|---|---|---|---|
 | QGSP_BIC_HP | 1.000 | 0.986 | 0.955 | 0.945 | 0.975 |
 | QGSP_INCLXX_HP | 0.999 | 0.977 | 0.916 | 0.829 | 0.958 |
-| Line-scaled nuclear lines | 1.000 | 1.000 | 0.970 | 0.969 | 1.000 |
+| Line-scaled nuclear lines | 1.000 | 1.000 | 0.972 | 1.007 | 1.000 |
 | CXB of Churazov et al. (2007), +10 % | 1.099 | 1.063 | 1.008 | 1.000 | 1.043 |
 
-- **Hadronic model:** the spread of the three models (2–4 % at 25–300 keV, up to 17 % at 1–10 MeV here).
+- **Hadronic model:** the spread of the three models (2–4 % at 25–300 keV, up to 17 % at 1–10 MeV here). The
+  hadronic systematic of the reference orbits is wider (models above 10 GeV/nucleon and the Bertini
+  de-excitation, see the README): about −15 % at 25–300 keV at this cutoff (R_c ≈ 6 GV).
 - **Nuclear lines:** the line-scaled variant lowers the 511 keV line by a factor of 2 (3 % of the
-  100–1000 keV band) and the MeV lines (3 % of the 1–10 MeV band).
+  100–1000 keV band); in the 1–10 MeV band the weaker 1.6–6.1 MeV lines and the stronger 4.44 MeV line nearly
+  compensate (+0.7 %).
 - **CXB normalisation:** the reflection scales with it (+10 % for `churazov07`).
 - **Other systematic terms**, not tabulated per position: CR spectra (+2 to +14 %, increasing with R_c), field
   inside the atmosphere (up to −21 % on the MeV limb), cutoff model. The reference orbits list them per energy

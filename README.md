@@ -88,8 +88,9 @@ give the emission of a whole Earth with a single vertical cutoff R_c (`rc_GV`, 0
 (`phi_GV`, 0.3–1.5 GV). Since the showers develop within a few tens of kilometres of the impact point, the
 emission at a place with cutoff R_c is that of the uniform Earth with the same R_c. For a real field, each line of
 sight takes I(E, b) at the cutoff where it reaches 35 km (the altitude of the emission), or at its tangent point
-if it passes above; the cutoffs come from the IGRF grids (R_c = `r_eq_GV` / `L_bmin`²). `albedo_earth.sky` does
-this; `docs/worked_example.md` explains it step by step.
+if it passes above; the cutoffs come from the IGRF grids (R_c = `r_eq_GV` / `L_bmin`²). Above 17 GV (IGRF
+reaches 17.7 GV over South-East Asia) the tables are extrapolated linearly from the 16–17 GV interval (v1.0.2;
+earlier versions clamped at 17 GV). `albedo_earth.sky` does this; `docs/worked_example.md` explains it step by step.
 
 - **Solar modulation.** φ is on the scale of the Vos & Potgieter (2015) local interstellar spectrum, i.e., of the
   monthly series of Usoskin et al. (2017) and Väisänen et al. (2023). Solar minimum is about 0.40 GV (annual
@@ -97,12 +98,21 @@ this; `docs/worked_example.md` explains it step by step.
   Interpolate linearly between grid values. The file `albedo_cr_emission_s07.h5` uses the older scale
   (φ_VP15 = 0.645 φ_old + 0.236 GV).
 - **Components** (`intensity_components`): protons, He, Z > 2 nuclei, galactic e⁻ and e⁺, and re-entrant e±.
-- **Hadronic models** (`intensity_total`): FTFP_BERT_HP (reference), QGSP_BIC_HP and QGSP_INCLXX_HP. Their spread
-  is the hadronic systematic uncertainty: ≤ 4 % at 25–300 keV at low latitude, up to 20 % at the poles, and larger
-  in the MeV range.
-- **Nuclear lines.** Geant4 overproduces the 511 keV line by about 2 and the 1.6, 2.3 and 6.1 MeV lines by
-  2.9–4.2 (the 4.44 MeV line is correct within 10 %). For line work use `intensity_total_line_scaled`, which
-  rescales them to the SMM and HEAO 3 measurements.
+- **Hadronic models** (`intensity_total`): FTFP_BERT_HP (reference), QGSP_BIC_HP and QGSP_INCLXX_HP (the latter two
+  below 10 GeV/nucleon, FTFP_BERT_HP above). Their spread is ≤ 4 % at 25–300 keV at low latitude and up to 20 % at
+  the poles. The hadronic systematic uncertainty of the reference orbits is larger: it also includes these models
+  above 10 GeV/nucleon and the PreCompound de-excitation in the Bertini cascade of FTFP_BERT_HP (folded estimates,
+  paper Appendix C): −13 % at low latitude and −20 to −24 % at the poles at 25–300 keV, −26 to −39 % at 1–3 MeV.
+  The default Bertini de-excitation emits no discrete nuclear lines, hence the weak 4.44 MeV line (below).
+- **Nuclear lines.** Relative to the 511 keV line, the Geant4 yields of the 1.6, 2.3 and 6.1 MeV lines agree with
+  the data within 20 %, while the 4.44 MeV line is about ten times too weak. For line work use
+  `intensity_total_line_scaled`, which rescales the lines to the SMM and HEAO 3 measurements (511 keV ÷ 1.95,
+  1.6, 2.3 and 6.1 MeV ÷ 1.6–2.0, 4.44 MeV × 6.2). v1.0.2 corrects the line fractions of v1.0–v1.0.1, which
+  subtracted only half of the continuum under the lines.
+  **Caveat:** this assumes the absolute SMM/HEAO 3 scale. The absolute MeV measurements of the atmosphere, all made
+  between 1971 and 1989 (SMM, HEAO 3, 1972-076B, balloons), differ from each other by a factor of about five, and the
+  nominal model lies within their range (0.5–2.8 times the data at 1–2 MeV); the line ratios and the MeV continuum
+  shape (within 40 % of SMM relative to 511 keV) are the firmer results.
 
 ### Response functions
 
@@ -146,6 +156,24 @@ flashes, and the background produced in the instrument itself.
 The tables were produced with albedo_sim (Geant4 11.4.1); the code version and the number of simulated primaries
 of each product are in `MANIFEST.json` and in the file attributes (`chunks`, `n_primaries`, `settings`).
 
+## Version history
+
+- **v1.0.2** (2026-10-11):
+  - *Line-scaled variant corrected.* The line fractions of v1.0–v1.0.1 subtracted only half of the continuum
+    under each line; the corrected `line_scale_factor` acts only on the bin containing each line centre, and the
+    4.44 MeV line is now scaled up (Geant4 under-produces it; see Nuclear lines). `intensity_total` and the other
+    emission tables are unchanged.
+  - `band_brightness` now integrates exactly 25–300 keV (partial bins); values are 2.2 % higher than in v1.0.1.
+  - Reference orbits: rays split at the b edges of the tables (exact sums; v1.0.1 was 5–9 % low per bin at
+    1–4 keV, about 1 % in the bands); cutoffs above 17 GV extrapolated linearly instead of clamped; hadronic
+    systematic term widened (see Hadronic models), so `sys_down` is larger above 100 keV.
+  - `albedo_earth.lines_of_sight`: the azimuth `psi` now runs from east towards north as documented (v1.0.1 was
+    mirrored east–west; integrals over the full azimuth were not affected); cutoffs above 17 GV extrapolated.
+  - Documentation: per-bin accuracy of the response functions qualified (0.5 % above 25 keV).
+  - IGRF cutoff grid added for epoch 1971.5 (balloon comparison of the paper).
+- **v1.0.1** (2026-10-05): Zenodo DOIs in README and `CITATION.cff`; data identical to v1.0.
+- **v1.0** (2026-10-05): first release.
+
 ## Citation and licence
 
 The content of this release (data, documentation and code) is licensed under the Creative Commons Attribution 4.0
@@ -153,5 +181,6 @@ International licence (CC BY 4.0, see `LICENSE`): you may share and adapt it for
 appropriate credit. If you use these data, please cite the accompanying paper and this release (`CITATION.cff`).
 
 The release is archived on Zenodo: [doi:10.5281/zenodo.23158832](https://doi.org/10.5281/zenodo.23158832)
-(all versions; version 1.0 is [doi:10.5281/zenodo.23158833](https://doi.org/10.5281/zenodo.23158833)).
+(all versions; version 1.0 is [doi:10.5281/zenodo.23158833](https://doi.org/10.5281/zenodo.23158833), version
+1.0.1 [doi:10.5281/zenodo.23159121](https://doi.org/10.5281/zenodo.23159121)).
 Paper reference: to be added.

@@ -76,7 +76,7 @@ class Emission:
         """CR intensity at modulation phi and cutoff(s) rc [GV] (linear in both): [E, b] for a scalar rc, or
         [E, n] for an array of n cutoffs with a matching array of b-bin indices (see :func:`sky`)."""
         g = self.cr_at_phi(phi)
-        rc = np.clip(rc, self.rcs[0], self.rcs[-1])
+        rc = np.maximum(rc, self.rcs[0])        # above the last grid value: linear extrapolation of the last interval
         j = np.clip(np.searchsorted(self.rcs, rc, side="right") - 1, 0, len(self.rcs) - 2)
         t = (rc - self.rcs[j]) / (self.rcs[j + 1] - self.rcs[j])
         return g, j, t
@@ -240,9 +240,9 @@ def lines_of_sight(lat_deg: float, lon_deg: float, alt_km: float, b_edges, n_sub
     psi = (np.arange(n_psi) + 0.5) * 2 * np.pi / n_psi
     p_obs = unit(lat_deg, lon_deg)
     o, down = d * p_obs, -p_obs
-    east = np.cross([0, 0, 1.0], down)
+    east = np.cross([0, 0, 1.0], p_obs)                                     # local east (z x up)
     east = east / np.linalg.norm(east) if np.linalg.norm(east) > 1e-12 else np.array([1.0, 0, 0])
-    north = np.cross(down, east)
+    north = np.cross(p_obs, east)
     T, P = np.meshgrid(th, psi, indexing="ij")
     u = (np.cos(T)[..., None] * down
          + np.sin(T)[..., None] * (np.cos(P)[..., None] * east + np.sin(P)[..., None] * north))

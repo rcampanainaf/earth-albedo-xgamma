@@ -112,7 +112,7 @@ Vertical cutoff rigidities from the IGRF-14 internal field at the epoch in the f
 
 ## `response_<species>.h5` — Response functions
 
-Response functions of the standard production, one file per primary species in `data/responses/`: `response_cxb.h5` (CXB photons), `response_proton.h5`, `response_alpha.h5` (4He), `response_e-.h5`, `response_e+.h5` (cosmic rays, FTFP_BERT_HP, o-Ps fraction 0.035). The model variants (other hadronic models, o-Ps fractions) are released as emission tables only. Folded with the reference spectra they reproduce the tables of `albedo_cxb_reflection.h5` and `albedo_cr_emission.h5` within 0.5 % per energy bin and 0.02 % in broad bands. Z > 2 nuclei are folded on the He response (a nucleus of mass A at energy per nucleon e_n acts as A/4 He nuclei at e_n), and the re-entrant e+- on the e-/e+ responses (`albedo_earth.Response`, `examples/fold_responses.py`).
+Response functions of the standard production, one file per primary species in `data/responses/`: `response_cxb.h5` (CXB photons), `response_proton.h5`, `response_alpha.h5` (4He), `response_e-.h5`, `response_e+.h5` (cosmic rays, FTFP_BERT_HP, o-Ps fraction 0.035). The model variants (other hadronic models, o-Ps fractions) are released as emission tables only. Folded with the reference spectra they reproduce the tables of `albedo_cxb_reflection.h5` and `albedo_cr_emission.h5` within 0.5 % per energy bin above 25 keV (up to a few per cent below, where the CR emission is < 1 % of the total) and 0.02 % in broad bands. Z > 2 nuclei are folded on the He response (a nucleus of mass A at energy per nucleon e_n acts as A/4 He nuclei at e_n), and the re-entrant e+- on the e-/e+ responses (`albedo_earth.Response`, `examples/fold_responses.py`).
 
 | Item | Shape | Units | Description |
 |---|---|---|---|
@@ -160,7 +160,7 @@ Orbit-averaged emission (reflection + CR) for two common low Earth orbits, ready
 | `<orbit>/<phase>/sys_up` | (140,) | dimensionless | Upper systematic uncertainty, fraction of `flux_total`: positive shifts of `shifts/` added in quadrature. Statistical errors (< 1 % in broad bands) are not included. |
 | `<orbit>/<phase>/sys_down` | (140,) | dimensionless | Lower systematic uncertainty (positive number), fraction of `flux_total`: negative shifts added in quadrature. |
 | `<orbit>/<phase>/shifts/` |  |  | Signed fractional shifts of `flux_total` per energy bin, one dataset per systematic term. |
-| `<orbit>/<phase>/shifts/hadronic` | (140,) | dimensionless | Shift due to the larger shift of QGSP_BIC_HP or QGSP_INCLXX_HP with respect to FTFP_BERT_HP (CR). |
+| `<orbit>/<phase>/shifts/hadronic` | (140,) | dimensionless | Shift due to the largest shift with respect to FTFP_BERT_HP among QGSP_BIC_HP and QGSP_INCLXX_HP (production below 10 GeV per nucleon, folded estimate above) and FTFP_BERT_HP with the PreCompound de-excitation in the Bertini cascade (folded estimate) (CR). |
 | `<orbit>/<phase>/shifts/cr_spectra_iso` | (140,) | dimensionless | Shift due to modified ISO 15390 cosmic-ray spectra instead of the reference spectra (CR). |
 | `<orbit>/<phase>/shifts/z2_s07` | (140,) | dimensionless | Shift due to Z > 2 nuclei with the prescription of Sazonov et al. (2007) instead of superposition (CR). |
 | `<orbit>/<phase>/shifts/field` | (140,) | dimensionless | Shift due to geomagnetic field inside the atmosphere (dipole test, applied per band to disk and limb rays). |

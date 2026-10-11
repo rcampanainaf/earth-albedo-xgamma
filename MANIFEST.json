@@ -1,27 +1,27 @@
 {
-  "release": "earth-albedo-xgamma v1.0.1",
-  "created_utc": "2026-10-05T09:59:23.999516+00:00",
-  "python_git_commit": "1acc7201c7cd",
+  "release": "earth-albedo-xgamma v1.0.2",
+  "created_utc": "2026-10-11T17:44:46.137982+00:00",
+  "python_git_commit": "635ae9d195c9",
   "files": {
     "CITATION.cff": {
-      "bytes": 1126,
-      "sha256": "2c87d8f36b9588be803d3166ef1d9bb93fe99d568462a342fc4ec22bfbc5f8e7"
+      "bytes": 1208,
+      "sha256": "ec292110fe1973817bc480564b27385196675a9c5d8531e4f063589f1ed0137e"
     },
     "LICENSE": {
       "bytes": 18657,
       "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
     },
     "README.md": {
-      "bytes": 11459,
-      "sha256": "e9d56feef6ea820e9e1286691eba99e9f835fd43da1d8ede4d7b6523a84e1c95"
+      "bytes": 14179,
+      "sha256": "36589e799193d6813f19e0dce0353bac42770b8fb15ff53665350a190ee46a15"
     },
     "albedo_earth.py": {
-      "bytes": 15120,
-      "sha256": "b9e879b806f7d45eb88e88c888a684b4235a1cf8f4f6baa90a96d976cb974fa6"
+      "bytes": 15247,
+      "sha256": "0c6a17013100e08d1d015a5dd816a25bc8c2dc1a8df24bc2a91562388722c6d5"
     },
     "data/albedo_cr_emission.h5": {
-      "bytes": 45345637,
-      "sha256": "196991da6ad0339c691c707bd19cb80e83e6099f5228a37300f2da23b0b77890",
+      "bytes": 45345406,
+      "sha256": "29dd3dd44024469f9cf87c271e66b22514893b291730d6f9441c3d423a3383bd",
       "source": "output/p5/cr_albedo.h5",
       "provenance": {
         "chunks": {
@@ -86,8 +86,8 @@
       }
     },
     "data/albedo_cr_emission_s07.h5": {
-      "bytes": 45389679,
-      "sha256": "3dafe451986a629bd31a26a03c4c3916281c8a3a24e42053a778b169defe883c",
+      "bytes": 45389290,
+      "sha256": "bf8a1851373ee2d12b82924f8431229b567e2a52ba188548afbcaba1c49097ff",
       "source": "output/p5/cr_albedo_s07.h5",
       "provenance": {
         "chunks": {
@@ -162,8 +162,13 @@
     },
     "data/albedo_reference_orbits.h5": {
       "bytes": 1659024,
-      "sha256": "06ffcf7c3bec6e6c0b9a65079b0e17f49b333fd8e9a70594be592bc7ec3e9e99",
+      "sha256": "f8e2eb0503f913acf64fb93ae05483777846a0d3342ad6aa9df2a68152431089",
       "source": "output/p6/reference_orbits.h5"
+    },
+    "data/cutoff_igrf_1971.5.h5": {
+      "bytes": 403648,
+      "sha256": "5e8a286958d974c04be481d3177a3b85f0db2f2f042c1fd19ec534c120f04fc5",
+      "source": "output/p5/cutoff_igrf_1971.5.h5"
     },
     "data/cutoff_igrf_1972.5.h5": {
       "bytes": 403648,
@@ -212,22 +217,22 @@
     },
     "data/reference_orbits/LEO-EQ_solar_max.txt": {
       "bytes": 6184,
-      "sha256": "b0ca8a122bda76ad36c3f5b47bb7d52b654d59ad3ca8f130db50e7746c7e07f8",
+      "sha256": "8139b305a97fb1a69073f18ab3164c572f9c13351d17e00624140787b6621702",
       "source": "output/p6/LEO-EQ_solar_max.txt"
     },
     "data/reference_orbits/LEO-EQ_solar_min.txt": {
       "bytes": 6184,
-      "sha256": "5e623cf8ed656491a1ec464cddbf72009ee6f780f824efa6cfda58218fbdb5d8",
+      "sha256": "6791b9439e57e3bfc5bdd6672490ee5494f1c6a499b784b580d9a3d38cdc1d85",
       "source": "output/p6/LEO-EQ_solar_min.txt"
     },
     "data/reference_orbits/LEO-SSO_solar_max.txt": {
       "bytes": 6188,
-      "sha256": "f61c3f6881c55fd7cddc6b0209ae303108a6fc341fc2991855712ee4d6643c3b",
+      "sha256": "fa54ee2b88c36c07d466463128c0b68e090284df9a60776677097c2ef4c4357e",
       "source": "output/p6/LEO-SSO_solar_max.txt"
     },
     "data/reference_orbits/LEO-SSO_solar_min.txt": {
       "bytes": 6188,
-      "sha256": "25f3bb4d81a339a5cee9d2f16f8b12e6ef42c18be99108840a62ed260c923063",
+      "sha256": "06db380310ba2b5251f6d5dd5cc7245eae2f97699bda31df38c9de99449e0880",
       "source": "output/p6/LEO-SSO_solar_min.txt"
     },
     "data/responses/response_alpha.h5": {
@@ -256,12 +261,12 @@
       "source": "output/p5/prod/proton_cr/*/*.h5"
     },
     "docs/format.md": {
-      "bytes": 29565,
-      "sha256": "adb45ebcd81b9561e7cad4a04cead907857ba978aefd1843b93e7d389c59bebf"
+      "bytes": 29811,
+      "sha256": "1a9fe3ac8889fc1f589df7bd418478fd5a6d0a77ccfbc9231e791af50c51fc74"
     },
     "docs/worked_example.md": {
-      "bytes": 8748,
-      "sha256": "3a508d04335367bd0818015e0530b1ebbe9c200fbb922ffa7b3f9389672061e0"
+      "bytes": 9015,
+      "sha256": "95fd38d602a8fd14c345e69db70f3e5aaa1b243634068b9271f93e7aca802f68"
     },
     "examples/fold_responses.py": {
       "bytes": 6279,
