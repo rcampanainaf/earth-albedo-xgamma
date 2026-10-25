@@ -1,30 +1,36 @@
 {
-  "release": "earth-albedo-xgamma v1.0.2",
-  "created_utc": "2026-10-11T17:44:46.137982+00:00",
-  "python_git_commit": "635ae9d195c9",
+  "release": "earth-albedo-xgamma v1.1",
+  "created_utc": "2026-10-25T07:34:32.125837+00:00",
+  "python_git_commit": "d2ced202ef21",
   "files": {
     "CITATION.cff": {
-      "bytes": 1208,
-      "sha256": "ec292110fe1973817bc480564b27385196675a9c5d8531e4f063589f1ed0137e"
+      "bytes": 1288,
+      "sha256": "250bbd73f373146f982c25ba50e6d9562ae4a79737019657c8c7088ab41ed186"
     },
     "LICENSE": {
       "bytes": 18657,
       "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
     },
     "README.md": {
-      "bytes": 14179,
-      "sha256": "36589e799193d6813f19e0dce0353bac42770b8fb15ff53665350a190ee46a15"
+      "bytes": 16089,
+      "sha256": "9f2a9f9baa3ed3b39fa60b5053d76054a6baa7408c1512800df760fd1426e948"
     },
     "albedo_earth.py": {
-      "bytes": 15247,
-      "sha256": "0c6a17013100e08d1d015a5dd816a25bc8c2dc1a8df24bc2a91562388722c6d5"
+      "bytes": 15862,
+      "sha256": "e0ae97f86e62eef76b5c04f946994ee891d927a260d1169569bc3cb2dec585fb"
     },
     "data/albedo_cr_emission.h5": {
-      "bytes": 45345406,
-      "sha256": "29dd3dd44024469f9cf87c271e66b22514893b291730d6f9441c3d423a3383bd",
+      "bytes": 50513297,
+      "sha256": "bc6c5fcccee0c7ec835a64e0baa35e72cef6d5a502dd521bb50c77d9cd618300",
       "source": "output/p5/cr_albedo.h5",
       "provenance": {
         "chunks": {
+          "preco": {
+            "p": 72,
+            "he": 36,
+            "e-": 12,
+            "e+": 12
+          },
           "ftfp": {
             "p": 72,
             "he": 36,
@@ -71,6 +77,7 @@
           "cutoff": "sharp vertical rigidity cutoff, all directions"
         },
         "models": [
+          "preco",
           "ftfp",
           "qgsp",
           "inclxx"
@@ -86,11 +93,17 @@
       }
     },
     "data/albedo_cr_emission_s07.h5": {
-      "bytes": 45389290,
-      "sha256": "bf8a1851373ee2d12b82924f8431229b567e2a52ba188548afbcaba1c49097ff",
+      "bytes": 50567382,
+      "sha256": "c5ba7aefaf5c901a16ef89e9ce2ad38b14a239e5d2fb78de8cafb060fff3de33",
       "source": "output/p5/cr_albedo_s07.h5",
       "provenance": {
         "chunks": {
+          "preco": {
+            "p": 72,
+            "he": 36,
+            "e-": 12,
+            "e+": 12
+          },
           "ftfp": {
             "p": 72,
             "he": 36,
@@ -137,6 +150,7 @@
           "cutoff": "sharp vertical rigidity cutoff, all directions"
         },
         "models": [
+          "preco",
           "ftfp",
           "qgsp",
           "inclxx"
@@ -161,8 +175,8 @@
       }
     },
     "data/albedo_reference_orbits.h5": {
-      "bytes": 1659024,
-      "sha256": "f8e2eb0503f913acf64fb93ae05483777846a0d3342ad6aa9df2a68152431089",
+      "bytes": 1665552,
+      "sha256": "97e44482044a4d10bbdfc9b420836de101d669e2d77a9a4e7907a075359562a3",
       "source": "output/p6/reference_orbits.h5"
     },
     "data/cutoff_igrf_1971.5.h5": {
@@ -216,29 +230,29 @@
       "source": "output/p5/cutoff_igrf_2025.h5"
     },
     "data/reference_orbits/LEO-EQ_solar_max.txt": {
-      "bytes": 6184,
-      "sha256": "8139b305a97fb1a69073f18ab3164c572f9c13351d17e00624140787b6621702",
+      "bytes": 6198,
+      "sha256": "4a12fb83f019590f77f0886140549e9704dea5ac00b3469fc6061194c559378d",
       "source": "output/p6/LEO-EQ_solar_max.txt"
     },
     "data/reference_orbits/LEO-EQ_solar_min.txt": {
-      "bytes": 6184,
-      "sha256": "6791b9439e57e3bfc5bdd6672490ee5494f1c6a499b784b580d9a3d38cdc1d85",
+      "bytes": 6198,
+      "sha256": "4be6724032b2c05004ce18e66bc9938a208d2ec6e47adc623bedd8c6eb1b3b74",
       "source": "output/p6/LEO-EQ_solar_min.txt"
     },
     "data/reference_orbits/LEO-SSO_solar_max.txt": {
-      "bytes": 6188,
-      "sha256": "fa54ee2b88c36c07d466463128c0b68e090284df9a60776677097c2ef4c4357e",
+      "bytes": 6202,
+      "sha256": "968aeef9176aa8a67ef09b5a9629e9e5b6de567dbfba211fcbef09eb74d07cf4",
       "source": "output/p6/LEO-SSO_solar_max.txt"
     },
     "data/reference_orbits/LEO-SSO_solar_min.txt": {
-      "bytes": 6188,
-      "sha256": "06db380310ba2b5251f6d5dd5cc7245eae2f97699bda31df38c9de99449e0880",
+      "bytes": 6202,
+      "sha256": "2b107088caa062185b39ba08bd7631aa5cf70b05ce2583491ed9f3393d0594ee",
       "source": "output/p6/LEO-SSO_solar_min.txt"
     },
     "data/responses/response_alpha.h5": {
-      "bytes": 2240606,
-      "sha256": "5d57325cab4f73829237d49f34a7d0bc64a1de2edffabae0a3a3a24105c8b5b5",
-      "source": "output/p5/prod/alpha_cr/*/*.h5"
+      "bytes": 2196236,
+      "sha256": "99325878043e98ec8f4a173529dff6302c25478ab5c75578cf04c51970303ea8",
+      "source": "output/p5/prod/alpha_cr_preco/*/*.h5"
     },
     "data/responses/response_cxb.h5": {
       "bytes": 2124021,
@@ -256,29 +270,29 @@
       "source": "output/p5/prod/e-_cr/*/*.h5"
     },
     "data/responses/response_proton.h5": {
-      "bytes": 2903315,
-      "sha256": "0feaf5ac153b47eadb6f15206663a172f9feca885d3f2e63bf8441e283aaa749",
-      "source": "output/p5/prod/proton_cr/*/*.h5"
+      "bytes": 2753549,
+      "sha256": "e98e3b62e0947e47a3c2f50d8cd080e6036b0b5db18b3e8fb407ba6654ab40a4",
+      "source": "output/p5/prod/proton_cr_preco/*/*.h5"
     },
     "docs/format.md": {
-      "bytes": 29811,
-      "sha256": "1a9fe3ac8889fc1f589df7bd418478fd5a6d0a77ccfbc9231e791af50c51fc74"
+      "bytes": 31637,
+      "sha256": "1de73f282092b1cd4bd62a242f7c8e47e2cd52ad8ecb4a30595d632f70bcf20f"
     },
     "docs/worked_example.md": {
-      "bytes": 9015,
-      "sha256": "95fd38d602a8fd14c345e69db70f3e5aaa1b243634068b9271f93e7aca802f68"
+      "bytes": 9276,
+      "sha256": "69c3d706c7a65960db3f8a32d0d00483732c455e26e49b3292f096c41a26c484"
     },
     "examples/fold_responses.py": {
       "bytes": 6279,
       "sha256": "9ca53e07e489a326849a43a044fa9e7d0398889041d1b6c4a24ad93f22ad898c"
     },
     "examples/minimal_example.py": {
-      "bytes": 1371,
-      "sha256": "8980f0a25609ccdea5f81ed95179ee5f3c66ea0ec37f3411e4c8ab7275a53ddb"
+      "bytes": 1382,
+      "sha256": "67cf7eea6fca715e91874da630ebda24d4a68d48dbeea152a524357f0e19741c"
     },
     "examples/rome_solar_minimum.py": {
-      "bytes": 7424,
-      "sha256": "65a192cde386e073e0e14aadf76e96c634720eeed3097c6d21d928fd83323fd4"
+      "bytes": 7572,
+      "sha256": "2c3313ee494bcfd52489b6c165bf059d656ed958190960eee74dce8d8c827270"
     },
     "requirements.txt": {
       "bytes": 97,

@@ -37,7 +37,7 @@ def main(argv=None):
     a = p.parse_args(argv)
 
     # Step 1: inputs --------------------------------------------------------------------------------------------
-    em = ae.Emission("gruber99", "ftfp")
+    em = ae.Emission("gruber99")                        # reference hadronic model (em.reference)
     cut = ae.Cutoff(a.epoch)
     e = em.e_edges
     d = ae.R_E + a.alt
@@ -86,15 +86,16 @@ def main(argv=None):
 
     # Step 7: model uncertainties -------------------------------------------------------------------------------
     var = {}
-    for name, kw in (("qgsp", dict(model="qgsp")), ("inclxx", dict(model="inclxx")),
-                     ("lines", dict(line_scaled=True)), ("churazov07", dict(cxb_model="churazov07"))):
+    hadronic = [m for m in em.models if m != em.reference]          # alternative hadronic models of the file
+    for name, kw in ([(m, dict(model=m)) for m in hadronic]
+                     + [("lines", dict(line_scaled=True)), ("churazov07", dict(cxb_model="churazov07"))]):
         emv = ae.Emission(**kw)
         r, c = ae.sky(emv, v, cut, a.phi)
         var[name] = ae.flux(r + c, v)
     print("Step 7  total of the variants relative to the reference")
     print(table(e, list(var.items()), ref=f_tot))
-    had_lo = np.minimum.reduce([f_tot, var["qgsp"], var["inclxx"]])
-    had_hi = np.maximum.reduce([f_tot, var["qgsp"], var["inclxx"]])
+    had_lo = np.minimum.reduce([f_tot] + [var[m] for m in hadronic])
+    had_hi = np.maximum.reduce([f_tot] + [var[m] for m in hadronic])
     mb = (e[:-1] >= 25) & (e[1:] <= 300)
     stat = np.sqrt(((f_refl_err * np.diff(e))[mb] ** 2).sum())    # independent bins, added in quadrature
     print(f"        statistical error of the reflection, 25-300 keV: {stat:.2g} ph cm-2 s-1 "

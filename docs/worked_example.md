@@ -18,7 +18,7 @@ through a plane facing nadir.
 | Solar cycle | solar minimum, φ = 0.40 GV | the CR grid (`phi_GV`) |
 | Geomagnetic field | IGRF-14, epoch 2025.0 | `cutoff_igrf_2025.h5` |
 | CXB | Gruber et al. (1999) | `albedo_cxb_reflection.h5`, group `gruber99` |
-| Hadronic model | FTFP_BERT_HP | `albedo_cr_emission.h5`, `intensity_total[0]` |
+| Hadronic model | FTFP_BERT_HP with the PreCompound de-excitation (`preco`, the reference) | `albedo_cr_emission.h5`, `intensity_total[0]` |
 
 **Solar minimum.** The modulation potential φ is on the scale of the Vos & Potgieter (2015) interstellar
 spectrum, as the monthly series of Usoskin et al. (2017) and Väisänen et al. (2023). The annual means of the
@@ -27,7 +27,7 @@ take φ from that series. φ = 0.40 GV is a grid value; between grid values the 
 
 ```python
 import albedo_earth as ae
-em = ae.Emission("gruber99", "ftfp")      # reflection I(E, b) and CR grid I(phi, R_c, E, b)
+em = ae.Emission("gruber99")              # reflection I(E, b) and CR grid I(phi, R_c, E, b), reference model
 cut = ae.Cutoff(2025.0)                   # IGRF vertical cutoffs
 ```
 
@@ -106,11 +106,11 @@ f_cr = ae.flux(i_cr, v)
 
 | Band [keV] | 1–10 | 10–100 | 100–1000 | 1000–10 000 | 25–300 |
 |---|---|---|---|---|---|
-| F_CR, 5a (nadir cutoff) | 0.00066 | 0.932 | 1.473 | 0.556 | 1.738 |
-| F_CR, 5b (per line of sight) | 0.00066 | 0.965 | 1.534 | 0.593 | 1.801 |
-| ratio 5a / 5b | 0.997 | 0.966 | 0.960 | 0.938 | 0.965 |
+| F_CR, 5a (nadir cutoff) | 0.00058 | 0.858 | 1.336 | 0.501 | 1.587 |
+| F_CR, 5b (per line of sight) | 0.00063 | 0.882 | 1.381 | 0.529 | 1.632 |
+| ratio 5a / 5b | 0.919 | 0.973 | 0.968 | 0.948 | 0.972 |
 
-The nadir cutoff underestimates the emission by 3–6 % here, because the northern part of the view has lower
+The nadir cutoff underestimates the emission by 3–5 % here (above 10 keV), because the northern part of the view has lower
 cutoffs and the limb, which dominates at MeV energies, reaches high magnetic latitudes. The difference depends
 on the position (it changes sign where the cutoff gradient reverses); use 5b for quantitative work.
 
@@ -126,10 +126,10 @@ f_plane = ae.flux(i_refl + i_cr, v, cosine=True)          # through a plane faci
 | Band [keV] | 1–10 | 10–100 | 100–1000 | 1000–10 000 | 25–300 |
 |---|---|---|---|---|---|
 | Reflection | 0.1085 | 1.667 | 0.1244 | 0.000228 | 1.379 |
-| CR-induced | 0.00066 | 0.965 | 1.534 | 0.593 | 1.801 |
-| **Total** | **0.1092** | **2.632** | **1.658** | **0.593** | **3.179** |
-| Total through a plane facing nadir | 0.0689 | 1.784 | 1.158 | 0.376 | 2.189 |
-| CR fraction of the total | 0.006 | 0.37 | 0.93 | 1.00 | 0.57 |
+| CR-induced | 0.00063 | 0.882 | 1.381 | 0.529 | 1.632 |
+| **Total** | **0.1092** | **2.549** | **1.505** | **0.529** | **3.011** |
+| Total through a plane facing nadir | 0.0689 | 1.725 | 1.051 | 0.331 | 2.071 |
+| CR fraction of the total | 0.006 | 0.35 | 0.92 | 1.00 | 0.54 |
 
 The reflection dominates below about 50 keV, the CR emission above. The script writes the spectrum per energy
 bin to `rome_600km_solar_min.txt` (columns: E_lo, E_hi [keV]; F_refl, F_CR, F_total, the hadronic minimum and
@@ -147,17 +147,17 @@ Repeat Steps 3–6 with the variants in the tables (`ae.Emission(model=...)`, `l
 
 | Variant | 1–10 | 10–100 | 100–1000 | 1000–10 000 | 25–300 |
 |---|---|---|---|---|---|
-| QGSP_BIC_HP | 1.000 | 0.986 | 0.955 | 0.945 | 0.975 |
-| QGSP_INCLXX_HP | 0.999 | 0.977 | 0.916 | 0.829 | 0.958 |
-| Line-scaled nuclear lines | 1.000 | 1.000 | 0.972 | 1.007 | 1.000 |
-| CXB of Churazov et al. (2007), +10 % | 1.099 | 1.063 | 1.008 | 1.000 | 1.043 |
+| FTFP_BERT_HP, default de-excitation (`ftfp`) | 1.000 | 1.033 | 1.102 | 1.121 | 1.056 |
+| QGSP_BIC_HP | 1.000 | 1.009 | 1.025 | 1.030 | 1.015 |
+| QGSP_INCLXX_HP | 1.000 | 1.000 | 0.983 | 0.900 | 0.997 |
+| Line-scaled nuclear lines | 1.000 | 1.000 | 0.969 | 0.987 | 1.000 |
+| CXB of Churazov et al. (2007), +10 % | 1.099 | 1.065 | 1.008 | 1.000 | 1.046 |
 
-- **Hadronic model:** the spread of the three models (2–4 % at 25–300 keV, up to 17 % at 1–10 MeV here). The
-  hadronic systematic of the reference orbits is wider (models above 10 GeV/nucleon and the Bertini
-  de-excitation, see the README): about −15 % at 25–300 keV at this cutoff (R_c ≈ 6 GV).
-- **Nuclear lines:** the line-scaled variant lowers the 511 keV line by a factor of 2 (3 % of the
-  100–1000 keV band); in the 1–10 MeV band the weaker 1.6–6.1 MeV lines and the stronger 4.44 MeV line nearly
-  compensate (+0.7 %).
+- **Hadronic model:** the spread of the four models (0 to +6 % at 25–300 keV, −10 to +12 % at 1–10 MeV here);
+  `ftfp`, with the default Bertini de-excitation, is the upper edge. The hadronic systematic of the reference
+  orbits also includes QGSP_BIC_HP and QGSP_INCLXX_HP above 10 GeV/nucleon (folded estimates, see the README),
+  which lowers the lower edge to about −2 % at 25–300 keV at this cutoff (R_c ≈ 6 GV).
+- **Nuclear lines:** the line-scaled variant rescales the reference-model lines to SMM and HEAO 3 (model/data 1.95, 1.98, 2.57, 0.85 and 2.02 for the 0.511, 1.635, 2.313, 4.44 and 6.13 MeV lines).
 - **CXB normalisation:** the reflection scales with it (+10 % for `churazov07`).
 - **Other systematic terms**, not tabulated per position: CR spectra (+2 to +14 %, increasing with R_c), field
   inside the atmosphere (up to −21 % on the MeV limb), cutoff model. The reference orbits list them per energy

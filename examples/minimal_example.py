@@ -15,7 +15,7 @@ R_E, d = 6371.0, 6371.0 + 500.0                        # km: observer 500 km abo
 with h5py.File(os.path.join(DATA, "albedo_cr_emission.h5")) as h:
     e, b = h["e_edges"][:], h["b_edges"][:]
     phis, rcs = h["phi_GV"][:], h["rc_GV"][:]
-    i_cr = h["intensity_total"][0, np.argmin(abs(phis - 0.6)), np.argmin(abs(rcs - 7.0))]   # FTFP, [E, b]
+    i_cr = h["intensity_total"][0, np.argmin(abs(phis - 0.6)), np.argmin(abs(rcs - 7.0))]   # reference model, [E, b]
 with h5py.File(os.path.join(DATA, "albedo_cxb_reflection.h5")) as h:
     i_refl = h["gruber99/I_E_b"][:]                                                          # [E, b]
 

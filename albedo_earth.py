@@ -8,7 +8,7 @@ the CR intensity of the ray is taken at the cutoff where the ray reaches the emi
 tangent point for rays passing above it. See docs/worked_example.md for the derivation, step by step.
 
     import albedo_earth as ae
-    em = ae.Emission()                                  # Gruber CXB, modern CR spectra, FTFP_BERT_HP
+    em = ae.Emission()                                  # Gruber CXB, modern CR spectra, reference hadronic model
     cut = ae.Cutoff(2025.0)                             # IGRF-14 vertical cutoffs
     v = ae.lines_of_sight(41.9, 12.5, 600.0, em.b_edges)
     i_refl, i_cr = ae.sky(em, v, cut, phi=0.40)        # [E, ray] intensities
@@ -36,10 +36,13 @@ class Emission:
 
     cxb_model: gruber99 (reference), churazov07, ajello08, turler10, frontera07.
     cr_file: albedo_cr_emission.h5 (reference) or albedo_cr_emission_s07.h5.
-    model: ftfp (reference), qgsp, inclxx; line_scaled=True uses the line-scaled variant (FTFP_BERT_HP only).
+    model: the hadronic model, a name of the file attribute `models`; default the reference (`reference_model`,
+        from v1.1 `preco`, FTFP_BERT_HP with the PreCompound de-excitation; `ftfp` in v1.0.x). Alternatives: `ftfp`
+        (FTFP_BERT_HP, default de-excitation), `qgsp`, `inclxx`.
+    line_scaled=True uses the line-scaled variant (reference model only).
     """
 
-    def __init__(self, cxb_model: str = "gruber99", model: str = "ftfp", line_scaled: bool = False,
+    def __init__(self, cxb_model: str = "gruber99", model: str | None = None, line_scaled: bool = False,
                  cr_file: str = "albedo_cr_emission.h5", data: str = DATA):
         import h5py
 
@@ -47,9 +50,13 @@ class Emission:
             self.e_edges, self.b_edges = h["e_edges"][:], h["b_edges"][:]
             self.phis, self.rcs = h["phi_GV"][:], h["rc_GV"][:]
             models = json.loads(h.attrs["models"])
+            reference = h.attrs.get("reference_model", models[0])                   # v1.0.x: no attribute, ftfp
+            model = model or reference
+            if model not in models:
+                raise ValueError(f"model {model!r} not in this file: {models}")
             if line_scaled:
-                if model != "ftfp":
-                    raise ValueError("the line-scaled variant exists for FTFP_BERT_HP only")
+                if model != reference:
+                    raise ValueError(f"the line-scaled variant exists for the reference model ({reference}) only")
                 self.cr = h["intensity_total_line_scaled"][:].astype(float)
             else:
                 self.cr = h["intensity_total"][models.index(model)].astype(float)    # [phi, rc, E, b]
@@ -58,7 +65,7 @@ class Emission:
                 raise ValueError("CXB and CR tables have different binning")
             self.refl = h[cxb_model]["I_E_b"][:]                                      # [E, b]
             self.refl_err = h[cxb_model]["I_E_b_err"][:]
-        self.cxb_model, self.model = cxb_model, model
+        self.cxb_model, self.model, self.reference, self.models = cxb_model, model, reference, models
 
     @property
     def e_centres(self):

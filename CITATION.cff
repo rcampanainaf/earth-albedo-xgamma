@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use these data, please cite the accompanying paper (reference to be added) and this release."
 title: "earth-albedo-xgamma: the X- and gamma-ray emission of the Earth, 1 keV-10 MeV"
-version: "1.0.2"
+version: "1.1"
 doi: 10.5281/zenodo.23158832
 license: CC-BY-4.0
 type: dataset

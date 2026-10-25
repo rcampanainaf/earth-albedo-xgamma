@@ -26,7 +26,7 @@ python examples/fold_responses.py         # fold the response functions with oth
 ```python
 import albedo_earth as ae
 
-em = ae.Emission()                                   # Gruber CXB, reference CR spectra, FTFP_BERT_HP
+em = ae.Emission()                                   # Gruber CXB, reference CR spectra and hadronic model
 cut = ae.Cutoff(2025.0)                              # IGRF-14 vertical cutoffs
 v = ae.lines_of_sight(41.9, 12.5, 600.0, em.b_edges) # observer: lat, lon [deg], altitude [km]
 i_refl, i_cr = ae.sky(em, v, cut, phi=0.40)         # intensities per (energy, line of sight)
@@ -98,20 +98,22 @@ earlier versions clamped at 17 GV). `albedo_earth.sky` does this; `docs/worked_e
   Interpolate linearly between grid values. The file `albedo_cr_emission_s07.h5` uses the older scale
   (φ_VP15 = 0.645 φ_old + 0.236 GV).
 - **Components** (`intensity_components`): protons, He, Z > 2 nuclei, galactic e⁻ and e⁺, and re-entrant e±.
-- **Hadronic models** (`intensity_total`): FTFP_BERT_HP (reference), QGSP_BIC_HP and QGSP_INCLXX_HP (the latter two
-  below 10 GeV/nucleon, FTFP_BERT_HP above). Their spread is ≤ 4 % at 25–300 keV at low latitude and up to 20 % at
-  the poles. The hadronic systematic uncertainty of the reference orbits is larger: it also includes these models
-  above 10 GeV/nucleon and the PreCompound de-excitation in the Bertini cascade of FTFP_BERT_HP (folded estimates,
-  paper Appendix C): −13 % at low latitude and −20 to −24 % at the poles at 25–300 keV, −26 to −39 % at 1–3 MeV.
-  The default Bertini de-excitation emits no discrete nuclear lines, hence the weak 4.44 MeV line (below).
-- **Nuclear lines.** Relative to the 511 keV line, the Geant4 yields of the 1.6, 2.3 and 6.1 MeV lines agree with
-  the data within 20 %, while the 4.44 MeV line is about ten times too weak. For line work use
-  `intensity_total_line_scaled`, which rescales the lines to the SMM and HEAO 3 measurements (511 keV ÷ 1.95,
-  1.6, 2.3 and 6.1 MeV ÷ 1.6–2.0, 4.44 MeV × 6.2). v1.0.2 corrects the line fractions of v1.0–v1.0.1, which
-  subtracted only half of the continuum under the lines.
+- **Hadronic models** (`intensity_total`, names in the attribute `models`, reference first): `preco`, FTFP_BERT_HP
+  with the PreCompound de-excitation in the Bertini cascade (`G4CASCADE_USE_PRECOMPOUND=1`; reference from v1.1);
+  `ftfp`, FTFP_BERT_HP with its default de-excitation (the reference of v1.0.x); `qgsp`, QGSP_BIC_HP, and `inclxx`,
+  QGSP_INCLXX_HP (below 10 GeV/nucleon, the reference above). The default Bertini de-excitation emits no discrete
+  nuclear lines and a softer, stronger photon continuum; with the PreCompound de-excitation the 4.44 MeV line
+  appears and the continuum is lower: `ftfp` / `preco` is 1.06–1.21 at 25–300 keV and 1.11–1.31 at 1–3 MeV (largest at the
+  poles). The hadronic systematic uncertainty of the reference orbits is the largest positive and the largest
+  negative shift among the alternatives (`ftfp` exact, the other two extended above 10 GeV/nucleon with folded
+  estimates, paper Appendix C): +6 to +21 % / −3 to −9 % at 25–300 keV, up to +31 % / −20 % at 1–3 MeV.
+- **Nuclear lines.** Relative to the 511 keV line, the Geant4 yields (reference model) of the 1.6, 2.3, 4.44 and
+  6.1 MeV lines are 0.96–1.06, 1.13–1.53, 0.34–0.53 and 1.03–1.04 times the data. For line work use `intensity_total_line_scaled`, which rescales the lines
+  of the reference model to the SMM and HEAO 3 measurements (model/data 1.95, 1.98, 2.57, 0.85 and 2.02 for the 0.511, 1.635, 2.313, 4.44 and 6.13 MeV lines; the factors are in the attribute
+  `line_scaling`).
   **Caveat:** this assumes the absolute SMM/HEAO 3 scale. The absolute MeV measurements of the atmosphere, all made
-  between 1971 and 1989 (SMM, HEAO 3, 1972-076B, balloons), differ from each other by a factor of about five, and the
-  nominal model lies within their range (0.5–2.8 times the data at 1–2 MeV); the line ratios and the MeV continuum
+  between 1971 and 1989 (SMM, HEAO 3, 1972-076B, balloons), differ from each other by a factor of six to seven, and the
+  nominal model lies within their range (0.3–2.5 times the data at 1–2 MeV); the line ratios and the MeV continuum
   shape (within 40 % of SMM relative to 511 keV) are the firmer results.
 
 ### Response functions
@@ -129,8 +131,9 @@ isotropic primary intensity I(E0) (cm⁻² s⁻¹ sr⁻¹ keV⁻¹; E0 is the to
 response (a nucleus of mass number A at energy per nucleon e_n acts as A/4 He nuclei at e_n), and the cutoff is
 applied to the input spectrum. The re-entrant e± are the e± escaping from the nuclear showers (`lepton_yield`),
 re-injected isotropically and folded on the e⁻/e⁺ responses. `examples/fold_responses.py` reproduces the released
-tables (within 0.02 % in broad bands) and shows a different CXB. Only the standard production is released
-(FTFP_BERT_HP, o-Ps fraction 0.035); the other hadronic models are available as emission tables.
+tables (within 0.02 % in broad bands) and shows a different CXB. Only the standard production is released (nuclei
+with the reference hadronic model, e± from the FTFP_BERT_HP production, o-Ps fraction 0.035); the other hadronic
+models are available as emission tables.
 
 ### Uncertainties
 
@@ -158,6 +161,20 @@ of each product are in `MANIFEST.json` and in the file attributes (`chunks`, `n_
 
 ## Version history
 
+- **v1.1** (2026-10-25):
+  - *New reference hadronic model.* The nuclei are simulated with FTFP_BERT_HP and the PreCompound de-excitation in
+    the Bertini cascade (`preco`, new production with the same grid and seeds); FTFP_BERT_HP with its default
+    de-excitation (`ftfp`, the v1.0.x reference) stays as an alternative model, now the upper hadronic systematic.
+    `intensity_total` and `band_brightness` have four models; `intensity_components`, `intensity_total_disk`,
+    `intensity_total_line_scaled`, `escaping_leptons` and the proton and He response functions are for `preco`. New
+    attribute `reference_model`. Effect: the CR-induced emission is 5–17 % lower at 25–300 keV (most at the poles)
+    and 10–24 % lower at 1–3 MeV; the 4.44 MeV line is about five times stronger; at 25–300 keV the emission is
+    0.97–1.21 times S07 (was 1.12–1.39).
+  - Line-scaled variant recomputed for `preco` (model/data 1.95, 1.98, 2.57, 0.85 and 2.02 for the 0.511, 1.635, 2.313, 4.44 and 6.13 MeV lines).
+  - Reference orbits: CR with `preco`; the hadronic systematic is split into `shifts/hadronic_up` and
+    `shifts/hadronic_down` (largest positive and negative shift among `ftfp`, QGSP_BIC_HP and QGSP_INCLXX_HP; was
+    one term, `shifts/hadronic`, the largest shift); new attribute `cr_model`.
+  - `albedo_earth.Emission`: the default model is the file's reference (`model=None`); `em.reference`.
 - **v1.0.2** (2026-10-11):
   - *Line-scaled variant corrected.* The line fractions of v1.0–v1.0.1 subtracted only half of the continuum
     under each line; the corrected `line_scale_factor` acts only on the bin containing each line centre, and the
