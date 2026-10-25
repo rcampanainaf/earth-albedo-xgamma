@@ -19,6 +19,9 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.23302127
     description: "Version 1.0.2"
+  - type: doi
+    value: 10.5281/zenodo.23636593
+    description: "Version 1.1"
 authors:
   - family-names: Campana
     given-names: Riccardo

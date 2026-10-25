@@ -200,5 +200,6 @@ appropriate credit. If you use these data, please cite the accompanying paper an
 The release is archived on Zenodo: [doi:10.5281/zenodo.23158832](https://doi.org/10.5281/zenodo.23158832)
 (all versions; version 1.0 is [doi:10.5281/zenodo.23158833](https://doi.org/10.5281/zenodo.23158833), version
 1.0.1 [doi:10.5281/zenodo.23159121](https://doi.org/10.5281/zenodo.23159121), version 1.0.2
-[doi:10.5281/zenodo.23302127](https://doi.org/10.5281/zenodo.23302127)).
+[doi:10.5281/zenodo.23302127](https://doi.org/10.5281/zenodo.23302127), version 1.1
+[doi:10.5281/zenodo.23636593](https://doi.org/10.5281/zenodo.23636593)).
 Paper reference: to be added.
