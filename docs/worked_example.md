@@ -148,15 +148,13 @@ Repeat Steps 3–6 with the variants in the tables (`ae.Emission(model=...)`, `l
 | Variant | 1–10 | 10–100 | 100–1000 | 1000–10 000 | 25–300 |
 |---|---|---|---|---|---|
 | FTFP_BERT_HP, default de-excitation (`ftfp`) | 1.000 | 1.033 | 1.102 | 1.121 | 1.056 |
-| QGSP_BIC_HP | 1.000 | 1.009 | 1.025 | 1.030 | 1.015 |
-| QGSP_INCLXX_HP | 1.000 | 1.000 | 0.983 | 0.900 | 0.997 |
+| QGSP_BIC_HP | 1.000 | 0.997 | 0.996 | 1.006 | 0.997 |
+| QGSP_INCLXX_HP | 1.000 | 0.993 | 0.962 | 0.854 | 0.986 |
 | Line-scaled nuclear lines | 1.000 | 1.000 | 0.969 | 0.987 | 1.000 |
 | CXB of Churazov et al. (2007), +10 % | 1.099 | 1.065 | 1.008 | 1.000 | 1.046 |
 
-- **Hadronic model:** the spread of the four models (0 to +6 % at 25–300 keV, −10 to +12 % at 1–10 MeV here);
-  `ftfp`, with the default Bertini de-excitation, is the upper edge. The hadronic systematic of the reference
-  orbits also includes QGSP_BIC_HP and QGSP_INCLXX_HP above 10 GeV/nucleon (folded estimates, see the README),
-  which lowers the lower edge to about −2 % at 25–300 keV at this cutoff (R_c ≈ 6 GV).
+- **Hadronic model:** the spread of the four models (−1 to +6 % at 25–300 keV, −15 to +12 % at 1–10 MeV here);
+  `ftfp`, with the default Bertini de-excitation, is the upper edge and QGSP_INCLXX_HP the lower one.
 - **Nuclear lines:** the line-scaled variant rescales the reference-model lines to SMM and HEAO 3 (model/data 1.95, 1.98, 2.57, 0.85 and 2.02 for the 0.511, 1.635, 2.313, 4.44 and 6.13 MeV lines).
 - **CXB normalisation:** the reflection scales with it (+10 % for `churazov07`).
 - **Other systematic terms**, not tabulated per position: CR spectra (+2 to +14 %, increasing with R_c), field

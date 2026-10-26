@@ -101,12 +101,12 @@ earlier versions clamped at 17 GV). `albedo_earth.sky` does this; `docs/worked_e
 - **Hadronic models** (`intensity_total`, names in the attribute `models`, reference first): `preco`, FTFP_BERT_HP
   with the PreCompound de-excitation in the Bertini cascade (`G4CASCADE_USE_PRECOMPOUND=1`; reference from v1.1);
   `ftfp`, FTFP_BERT_HP with its default de-excitation (the reference of v1.0.x); `qgsp`, QGSP_BIC_HP, and `inclxx`,
-  QGSP_INCLXX_HP (below 10 GeV/nucleon, the reference above). The default Bertini de-excitation emits no discrete
+  QGSP_INCLXX_HP (whole primary range, half the statistics; from v1.2). The default Bertini de-excitation emits no discrete
   nuclear lines and a softer, stronger photon continuum; with the PreCompound de-excitation the 4.44 MeV line
   appears and the continuum is lower: `ftfp` / `preco` is 1.06–1.21 at 25–300 keV and 1.11–1.31 at 1–3 MeV (largest at the
   poles). The hadronic systematic uncertainty of the reference orbits is the largest positive and the largest
-  negative shift among the alternatives (`ftfp` exact, the other two extended above 10 GeV/nucleon with folded
-  estimates, paper Appendix C): +6 to +21 % / −3 to −9 % at 25–300 keV, up to +31 % / −20 % at 1–3 MeV.
+  negative shift among the alternatives (all from the production, paper Appendix C): +6 to +21 % / −2 to −9 % at
+  25–300 keV, up to +31 % / −20 % at 1–3 MeV.
 - **Nuclear lines.** Relative to the 511 keV line, the Geant4 yields (reference model) of the 1.6, 2.3, 4.44 and
   6.1 MeV lines are 0.96–1.06, 1.13–1.53, 0.34–0.53 and 1.03–1.04 times the data. For line work use `intensity_total_line_scaled`, which rescales the lines
   of the reference model to the SMM and HEAO 3 measurements (model/data 1.95, 1.98, 2.57, 0.85 and 2.02 for the 0.511, 1.635, 2.313, 4.44 and 6.13 MeV lines; the factors are in the attribute
@@ -161,6 +161,13 @@ of each product are in `MANIFEST.json` and in the file attributes (`chunks`, `n_
 
 ## Version history
 
+- **v1.2** (2026-10-26):
+  - *Alternative hadronic models over the whole primary range.* QGSP_BIC_HP and QGSP_INCLXX_HP (`qgsp`, `inclxx`)
+    are now simulated also above 10 GeV/nucleon (half the statistics of the reference); in v1.0–v1.1 they were
+    completed with the reference model above 10 GeV/nucleon, and the reference-orbit systematics used folded
+    estimates there. The reference model (`preco`) and every table derived from it are unchanged. Effect: at
+    25–300 keV `qgsp` / `inclxx` are 2–6 % lower at high cutoffs than in v1.1; the lower edge of the hadronic
+    systematic of the reference orbits at 1–10 MeV is −16 to −18 % (was −18 to −20 %).
 - **v1.1** (2026-10-25):
   - *New reference hadronic model.* The nuclei are simulated with FTFP_BERT_HP and the PreCompound de-excitation in
     the Bertini cascade (`preco`, new production with the same grid and seeds); FTFP_BERT_HP with its default
