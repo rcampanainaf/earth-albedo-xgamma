@@ -208,5 +208,6 @@ The release is archived on Zenodo: [doi:10.5281/zenodo.23158832](https://doi.org
 (all versions; version 1.0 is [doi:10.5281/zenodo.23158833](https://doi.org/10.5281/zenodo.23158833), version
 1.0.1 [doi:10.5281/zenodo.23159121](https://doi.org/10.5281/zenodo.23159121), version 1.0.2
 [doi:10.5281/zenodo.23302127](https://doi.org/10.5281/zenodo.23302127), version 1.1
-[doi:10.5281/zenodo.23636593](https://doi.org/10.5281/zenodo.23636593)).
+[doi:10.5281/zenodo.23636593](https://doi.org/10.5281/zenodo.23636593), version 1.2
+[doi:10.5281/zenodo.23658400](https://doi.org/10.5281/zenodo.23658400)).
 Paper reference: to be added.
