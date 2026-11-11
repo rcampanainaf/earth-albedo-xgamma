@@ -148,11 +148,26 @@ models are available as emission tables.
 ## Main approximations
 
 Spherical, static US Standard Atmosphere 1976; sharp vertical cutoffs, the same in all directions (no penumbra, no
-east–west effect; the directional cutoffs change the emission by 3 % or less); internal IGRF field only; no
-geomagnetic field inside the atmosphere; Z > 2 nuclei by superposition of the He response; re-entrant e± re-injected
-isotropically; Geant4 line yields (see the line-scaled variant). **Not included:** trapped particles (SAA), auroral
-and precipitating electrons, solar X-rays reflected on the dayside, solar energetic particles, terrestrial gamma-ray
-flashes, and the background produced in the instrument itself.
+east–west effect: see the known limitation below); internal IGRF field only; no geomagnetic field inside the
+atmosphere; Z > 2 nuclei by superposition of the He response; re-entrant e± re-injected isotropically; Geant4 line
+yields (see the line-scaled variant). **Not included:** trapped particles (SAA), auroral and precipitating
+electrons, solar X-rays reflected on the dayside, solar energetic particles, terrestrial gamma-ray flashes, and the
+background produced in the instrument itself.
+
+**Known limitation: directional cutoffs (v1.2.1).** The CR tables are defined for a sharp cutoff that is the same
+for all arrival directions, and they are correct in that definition. In the real field the cutoff depends on the
+arrival direction. Cutoffs traced in the IGRF field (OTSO, epoch 2025, 41 directions up to a zenith angle of 75°)
+are higher than the vertical one away from the east–west plane, and the number of photons per primary rises
+steeply with its zenith angle. Folding both into the response functions lowers the CR-induced emission of the
+reference orbits by about 14 % for LEO-EQ (10–17 % within the limits of the estimate) and about 6 % for LEO-SSO,
+nearly equally from 25 keV to 10 MeV, and by about 12–15 % for orbits inclined by 20–45° (Swift, Fermi, SMM,
+Insight-HXMT). The penumbra changes these values by −1 to +2 % and the external field of a quiet magnetosphere by
+less than 1 %. The CR products and the reference orbits of this release are therefore a conservative (upper)
+estimate of the CR-induced emission, mostly at low geomagnetic latitudes; the CXB reflection is not affected.
+Releases v1.0–v1.2 stated that directional cutoffs change the emission by 3 % or less: that estimate came from the
+Störmer formula, which underestimates the cutoffs outside the east–west plane. A later release is planned to apply
+the correction (responses resolved in the arrival direction, traced cutoff maps); details in the accompanying
+paper (Section 4.3).
 
 ## Provenance
 
@@ -161,6 +176,10 @@ of each product are in `MANIFEST.json` and in the file attributes (`chunks`, `n_
 
 ## Version history
 
+- **v1.2.1** (2026-11-11): documentation only; the data are identical to v1.2. *Main approximations*: the effect
+  of the directional cutoffs, given in v1.0–v1.2 as 3 % or less (Störmer formula), is replaced by the result of
+  trajectory tracing: the CR-induced emission of the reference orbits is overestimated by about 14 % (LEO-EQ) and
+  6 % (LEO-SSO); see the known limitation.
 - **v1.2** (2026-10-26):
   - *Alternative hadronic models over the whole primary range.* QGSP_BIC_HP and QGSP_INCLXX_HP (`qgsp`, `inclxx`)
     are now simulated also above 10 GeV/nucleon (half the statistics of the reference); in v1.0–v1.1 they were
